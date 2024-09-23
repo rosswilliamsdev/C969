@@ -39,6 +39,5 @@ namespace C969
             //change this eventually to actual users!
             return username == "test" && password == "test";
         }
-
     }
 }

@@ -28,73 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.calendarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.appointmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customerRecordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.menuStrip1.SuspendLayout();
+            this.navBar = new System.Windows.Forms.MenuStrip();
+            this.calendarMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.appointmentsMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerRecordsMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainPanel = new System.Windows.Forms.Panel();
+            this.navBar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // navBar
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.calendarToolStripMenuItem,
-            this.appointmentsToolStripMenuItem,
-            this.customerRecordsToolStripMenuItem,
-            this.reportsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "Calendar";
+            this.navBar.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.navBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.calendarMenuButton,
+            this.appointmentsMenuButton,
+            this.customerRecordsMenuButton,
+            this.reportsMenuButton});
+            this.navBar.Location = new System.Drawing.Point(0, 0);
+            this.navBar.Name = "navBar";
+            this.navBar.Size = new System.Drawing.Size(800, 28);
+            this.navBar.TabIndex = 0;
+            this.navBar.Text = "Calendar";
             // 
-            // calendarToolStripMenuItem
+            // calendarMenuButton
             // 
-            this.calendarToolStripMenuItem.Name = "calendarToolStripMenuItem";
-            this.calendarToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
-            this.calendarToolStripMenuItem.Text = "Calendar";
+            this.calendarMenuButton.Name = "calendarMenuButton";
+            this.calendarMenuButton.Size = new System.Drawing.Size(82, 24);
+            this.calendarMenuButton.Text = "Calendar";
             // 
-            // appointmentsToolStripMenuItem
+            // appointmentsMenuButton
             // 
-            this.appointmentsToolStripMenuItem.Name = "appointmentsToolStripMenuItem";
-            this.appointmentsToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
-            this.appointmentsToolStripMenuItem.Text = "Appointments";
+            this.appointmentsMenuButton.Name = "appointmentsMenuButton";
+            this.appointmentsMenuButton.Size = new System.Drawing.Size(117, 24);
+            this.appointmentsMenuButton.Text = "Appointments";
             // 
-            // customerRecordsToolStripMenuItem
+            // customerRecordsMenuButton
             // 
-            this.customerRecordsToolStripMenuItem.Name = "customerRecordsToolStripMenuItem";
-            this.customerRecordsToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
-            this.customerRecordsToolStripMenuItem.Text = "Customer Records";
+            this.customerRecordsMenuButton.Name = "customerRecordsMenuButton";
+            this.customerRecordsMenuButton.Size = new System.Drawing.Size(143, 24);
+            this.customerRecordsMenuButton.Text = "Customer Records";
             // 
-            // reportsToolStripMenuItem
+            // reportsMenuButton
             // 
-            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
-            this.reportsToolStripMenuItem.Text = "Reports";
+            this.reportsMenuButton.Name = "reportsMenuButton";
+            this.reportsMenuButton.Size = new System.Drawing.Size(74, 24);
+            this.reportsMenuButton.Text = "Reports";
             // 
-            // panel1
+            // mainPanel
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 422);
-            this.panel1.TabIndex = 1;
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(0, 28);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(800, 422);
+            this.mainPanel.TabIndex = 1;
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.mainPanel);
+            this.Controls.Add(this.navBar);
+            this.MainMenuStrip = this.navBar;
             this.Name = "Home";
             this.Text = "Home";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.navBar.ResumeLayout(false);
+            this.navBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,11 +102,11 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem calendarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem appointmentsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem customerRecordsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.MenuStrip navBar;
+        private System.Windows.Forms.ToolStripMenuItem calendarMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem appointmentsMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem customerRecordsMenuButton;
+        private System.Windows.Forms.ToolStripMenuItem reportsMenuButton;
+        private System.Windows.Forms.Panel mainPanel;
     }
 }

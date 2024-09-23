@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,37 +18,69 @@ namespace C969
         {
             InitializeComponent();
 
-            mainContentPanel = new Panel
-            {
-                Dock = DockStyle.Fill,
-            };
-            this.Controls.Add(mainContentPanel);
-
-            Button calendarButton = new Button
-            {
-                Text = "Calendar",
-                Location = new Point(20, 20)
-            };
-            calendarButton.Click += (sender, e) => LoadCalendarPage();
-
-            this.Controls.Add(calendarButton);
-
+            calendarMenuButton.Click += (sender, e) => LoadCalendarPage();
+            appointmentsMenuButton.Click += (sender, e) => LoadAppointmentsPage();
+            customerRecordsMenuButton.Click += (sender, e) => LoadCustomerRecordsPage();
+            reportsMenuButton.Click += (sender, e) => LoadReportsPage();
         }
 
         private void LoadCalendarPage()
         {
-            mainContentPanel.Controls.Clear();
+            mainPanel.Controls.Clear();
 
-            Calendar calendarForm = new Calendar
+            CalendarForm calendarForm = new CalendarForm
             {
                 TopLevel = false,
                 FormBorderStyle = FormBorderStyle.None,
-                Dock = DockStyle.Fill,
+                Dock = DockStyle.Fill
+
             };
 
-            mainContentPanel.Controls.Add(calendarForm);
+            mainPanel.Controls.Add(calendarForm);
             calendarForm.Show();
         }
 
+        private void LoadAppointmentsPage()
+        {
+            mainPanel.Controls.Clear();
+
+            AppointmentsForm appointmentsForm = new AppointmentsForm
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
+            mainPanel.Controls.Add(appointmentsForm);
+            appointmentsForm.Show();
+        }
+        private void LoadCustomerRecordsPage()
+        {
+            mainPanel.Controls.Clear();
+
+            CustomerRecordsForm customerRecordsForm = new CustomerRecordsForm
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
+            mainPanel.Controls.Add(customerRecordsForm);
+            customerRecordsForm.Show();
+        }
+        private void LoadReportsPage()
+        {
+            mainPanel.Controls.Clear();
+
+            ReportsForm reportsForm = new ReportsForm
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+
+            mainPanel.Controls.Add(reportsForm);
+            reportsForm.Show();
+        }
     }
 }

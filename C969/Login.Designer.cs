@@ -87,6 +87,7 @@
             this.loginButton.TabIndex = 5;
             this.loginButton.Text = "Submit";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // Login
             // 

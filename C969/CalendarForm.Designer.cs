@@ -1,6 +1,6 @@
 ﻿namespace C969
 {
-    partial class Calendar
+    partial class CalendarForm
     {
         /// <summary>
         /// Required designer variable.
@@ -43,18 +43,18 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(327, 98);
+            this.dataGridView1.Location = new System.Drawing.Point(406, 98);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(442, 207);
+            this.dataGridView1.Size = new System.Drawing.Size(363, 207);
             this.dataGridView1.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(488, 59);
+            this.label1.Location = new System.Drawing.Point(516, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 20);
             this.label1.TabIndex = 2;
