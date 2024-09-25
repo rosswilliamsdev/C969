@@ -36,18 +36,18 @@
             // appointmentsDGV
             // 
             this.appointmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.appointmentsDGV.Location = new System.Drawing.Point(205, 92);
+            this.appointmentsDGV.Location = new System.Drawing.Point(70, 97);
             this.appointmentsDGV.Name = "appointmentsDGV";
             this.appointmentsDGV.RowHeadersWidth = 51;
             this.appointmentsDGV.RowTemplate.Height = 24;
-            this.appointmentsDGV.Size = new System.Drawing.Size(391, 297);
+            this.appointmentsDGV.Size = new System.Drawing.Size(651, 297);
             this.appointmentsDGV.TabIndex = 0;
             // 
             // appointmentsLabel
             // 
             this.appointmentsLabel.AutoSize = true;
             this.appointmentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appointmentsLabel.Location = new System.Drawing.Point(334, 53);
+            this.appointmentsLabel.Location = new System.Drawing.Point(330, 47);
             this.appointmentsLabel.Name = "appointmentsLabel";
             this.appointmentsLabel.Size = new System.Drawing.Size(144, 25);
             this.appointmentsLabel.TabIndex = 1;
