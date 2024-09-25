@@ -78,7 +78,6 @@
             this.loginHeader.TabIndex = 4;
             this.loginHeader.Text = "Login";
             this.loginHeader.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.loginHeader.Click += new System.EventHandler(this.label3_Click);
             // 
             // loginButton
             // 
