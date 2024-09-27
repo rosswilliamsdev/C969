@@ -1,1 +1,1 @@
-SELECT * FROM city;
+ALTER TABLE address MODIFY address2 VARCHAR(50) NULL;

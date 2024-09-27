@@ -30,6 +30,9 @@
         {
             this.customerRecordsLabel = new System.Windows.Forms.Label();
             this.customerRecordsDGV = new System.Windows.Forms.DataGridView();
+            this.addButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.customerRecordsDGV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,14 +53,45 @@
             this.customerRecordsDGV.Name = "customerRecordsDGV";
             this.customerRecordsDGV.RowHeadersWidth = 51;
             this.customerRecordsDGV.RowTemplate.Height = 24;
-            this.customerRecordsDGV.Size = new System.Drawing.Size(671, 297);
+            this.customerRecordsDGV.Size = new System.Drawing.Size(671, 210);
             this.customerRecordsDGV.TabIndex = 2;
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(388, 352);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(86, 28);
+            this.addButton.TabIndex = 4;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(651, 352);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(86, 28);
+            this.deleteButton.TabIndex = 5;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(520, 352);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(86, 28);
+            this.editButton.TabIndex = 6;
+            this.editButton.Text = "Edit";
+            this.editButton.UseVisualStyleBackColor = true;
             // 
             // CustomerRecordsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.editButton);
+            this.Controls.Add(this.deleteButton);
+            this.Controls.Add(this.addButton);
             this.Controls.Add(this.customerRecordsLabel);
             this.Controls.Add(this.customerRecordsDGV);
             this.Name = "CustomerRecordsForm";
@@ -72,5 +106,8 @@
 
         private System.Windows.Forms.Label customerRecordsLabel;
         private System.Windows.Forms.DataGridView customerRecordsDGV;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button editButton;
     }
 }

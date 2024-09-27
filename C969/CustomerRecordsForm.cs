@@ -20,7 +20,7 @@ namespace C969
             LoadCustomerRecords();
         }
 
-        private void LoadCustomerRecords()
+        public void LoadCustomerRecords()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
             string query = "SELECT * FROM customer";
@@ -34,6 +34,13 @@ namespace C969
 
                 customerRecordsDGV.DataSource = dataTable;
             }
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            AddCustomerForm addCustomerForm = new AddCustomerForm(this);
+
+            addCustomerForm.ShowDialog();
         }
     }
 }
