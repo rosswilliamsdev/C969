@@ -98,16 +98,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCustomerForm.cs">
+    <Compile Include="Appointments\AddAppointmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddCustomerForm.Designer.cs">
+    <Compile Include="Appointments\AddAppointmentForm.Designer.cs">
+      <DependentUpon>AddAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Appointments\EditAppointmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Appointments\EditAppointmentForm.Designer.cs">
+      <DependentUpon>EditAppointmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerRecords\AddCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerRecords\AddCustomerForm.Designer.cs">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppointmentsForm.cs">
+    <Compile Include="Appointments\AppointmentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppointmentsForm.Designer.cs">
+    <Compile Include="Appointments\AppointmentsForm.Designer.cs">
       <DependentUpon>AppointmentsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CalendarForm.cs">
@@ -116,11 +128,17 @@
     <Compile Include="CalendarForm.Designer.cs">
       <DependentUpon>CalendarForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerRecordsForm.cs">
+    <Compile Include="CustomerRecords\CustomerRecordsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerRecordsForm.Designer.cs">
+    <Compile Include="CustomerRecords\CustomerRecordsForm.Designer.cs">
       <DependentUpon>CustomerRecordsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerRecords\EditCustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerRecords\EditCustomerForm.Designer.cs">
+      <DependentUpon>EditCustomerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
@@ -142,17 +160,26 @@
     <Compile Include="ReportsForm.Designer.cs">
       <DependentUpon>ReportsForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddCustomerForm.resx">
+    <EmbeddedResource Include="Appointments\AddAppointmentForm.resx">
+      <DependentUpon>AddAppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Appointments\EditAppointmentForm.resx">
+      <DependentUpon>EditAppointmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerRecords\AddCustomerForm.resx">
       <DependentUpon>AddCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppointmentsForm.resx">
+    <EmbeddedResource Include="Appointments\AppointmentsForm.resx">
       <DependentUpon>AppointmentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalendarForm.resx">
       <DependentUpon>CalendarForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerRecordsForm.resx">
+    <EmbeddedResource Include="CustomerRecords\CustomerRecordsForm.resx">
       <DependentUpon>CustomerRecordsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerRecords\EditCustomerForm.resx">
+      <DependentUpon>EditCustomerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>

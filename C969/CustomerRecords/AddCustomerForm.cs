@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,16 +24,46 @@ namespace C969
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            string customerName = nameTextBox.Text;
-            string address = addressTextBox.Text;
-            string phoneNumber = phoneNumberTextBox.Text;
-            string cityName = cityTextBox.Text;
-            string countryName = countryTextBox.Text;
+            string customerName = nameTextBox.Text.Trim();
+            string address = addressTextBox.Text.Trim();
+            string phoneNumber = phoneNumberTextBox.Text.Trim();
+            string cityName = cityTextBox.Text.Trim();
+            string countryName = countryTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(customerName))
+            {
+                MessageBox.Show("Customer name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrEmpty(phoneNumber))
+            {
+                MessageBox.Show("Phone number name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrEmpty(address))
+            {
+                MessageBox.Show("Address name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!IsValidPhoneNumber(phoneNumber))
+            {
+                MessageBox.Show("Phone number can only include digits and hyphens.", "Invalid Phone Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // Call the method to add the customer, passing in the input from the textboxes
             AddCustomer(customerName, address, phoneNumber, cityName, countryName);
             parentForm.LoadCustomerRecords();
             this.Close();
+        }
+
+
+
+        private bool IsValidPhoneNumber(string phoneNumber)
+        {
+            string pattern = @"^[0-9-]+$";
+            return Regex.IsMatch(phoneNumber, pattern);
         }
 
 
@@ -47,26 +78,37 @@ namespace C969
 
         private void AddCustomer(string customerName, string address, string phoneNumber, string cityName, string countryName)
         {
-            //check if country, city, and address exist, if not, insert them
-            int countryId = GetCountryId(countryName);
-            if (countryId == -1)
+            try
             {
-                countryId = InsertCountry(countryName);
-            }
+                // Perform the operation to add a customer
+                int countryId = GetCountryId(countryName);
+                if (countryId == -1)
+                {
+                    countryId = InsertCountry(countryName);
+                }
 
-            int cityId = GetCityId(cityName, countryId);
-            if (cityId == -1)
+                int cityId = GetCityId(cityName, countryId);
+                if (cityId == -1)
+                {
+                    cityId = InsertCity(cityName, countryId);
+                }
+
+                int addressId = InsertAddress(address, cityId, phoneNumber);
+                if (addressId > 0)
+                {
+                    InsertCustomerIntoDatabase(customerName, addressId, phoneNumber);
+                }
+            }
+            catch (MySqlException ex)
             {
-                cityId = InsertCity(cityName, countryId);
+                MessageBox.Show($"Error adding customer: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            int addressId = InsertAddress(address, cityId, phoneNumber);
-            if (addressId > 0)
+            catch (Exception ex)
             {
-                InsertCustomerIntoDatabase(customerName, addressId, phoneNumber);
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
+
 
         private int GetCountryId(string countryName)
         {
@@ -178,5 +220,9 @@ namespace C969
             }
         }
 
+        private void nameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

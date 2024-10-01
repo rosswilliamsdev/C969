@@ -12,18 +12,19 @@ using System.Windows.Forms;
 
 namespace C969
 {
-    public partial class CustomerRecordsForm : Form
+    public partial class AppointmentsForm : Form
     {
-        public CustomerRecordsForm()
+        public AppointmentsForm()
         {
             InitializeComponent();
-            LoadCustomerRecords();
+            appointmentsDGV.AllowUserToAddRows = false;
+            LoadAppointments();
         }
 
-        public void LoadCustomerRecords()
+        private void LoadAppointments()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
-            string query = "SELECT * FROM customer";
+            string query = "SELECT * FROM appointment";
             DataTable dataTable = new DataTable();
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -32,15 +33,8 @@ namespace C969
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, conn);
                 dataAdapter.Fill(dataTable);
 
-                customerRecordsDGV.DataSource = dataTable;
+                appointmentsDGV.DataSource = dataTable;
             }
-        }
-
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            AddCustomerForm addCustomerForm = new AddCustomerForm(this);
-
-            addCustomerForm.ShowDialog();
         }
     }
 }
