@@ -15,6 +15,12 @@ namespace C969.Appointments
         public EditAppointmentForm()
         {
             InitializeComponent();
+            dateDTP.Format = DateTimePickerFormat.Short;
+            //set default date value to original appointment date
+            startTimeDTP.Format = DateTimePickerFormat.Time;
+            startTimeDTP.ShowUpDown = true;
+            endTimeDTP.Format = DateTimePickerFormat.Time;
+            endTimeDTP.ShowUpDown = true;
         }
     }
 }

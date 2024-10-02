@@ -35,15 +35,13 @@
             this.appointmentTypeComboBox = new System.Windows.Forms.ComboBox();
             this.dateLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.customerComboBox = new System.Windows.Forms.ComboBox();
             this.startTimeLabel = new System.Windows.Forms.Label();
             this.appointmentTypeLabel = new System.Windows.Forms.Label();
             this.resetButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.endTimeLabel = new System.Windows.Forms.Label();
-            this.userIdLabel = new System.Windows.Forms.Label();
             this.customerLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -59,21 +57,21 @@
             // 
             // endTimeDTP
             // 
-            this.endTimeDTP.Location = new System.Drawing.Point(315, 328);
+            this.endTimeDTP.Location = new System.Drawing.Point(315, 275);
             this.endTimeDTP.Name = "endTimeDTP";
             this.endTimeDTP.Size = new System.Drawing.Size(191, 22);
             this.endTimeDTP.TabIndex = 54;
             // 
             // startTimeDTP
             // 
-            this.startTimeDTP.Location = new System.Drawing.Point(315, 283);
+            this.startTimeDTP.Location = new System.Drawing.Point(315, 230);
             this.startTimeDTP.Name = "startTimeDTP";
             this.startTimeDTP.Size = new System.Drawing.Size(191, 22);
             this.startTimeDTP.TabIndex = 53;
             // 
             // dateDTP
             // 
-            this.dateDTP.Location = new System.Drawing.Point(315, 244);
+            this.dateDTP.Location = new System.Drawing.Point(315, 191);
             this.dateDTP.Name = "dateDTP";
             this.dateDTP.Size = new System.Drawing.Size(191, 22);
             this.dateDTP.TabIndex = 52;
@@ -81,7 +79,7 @@
             // appointmentTypeComboBox
             // 
             this.appointmentTypeComboBox.FormattingEnabled = true;
-            this.appointmentTypeComboBox.Location = new System.Drawing.Point(313, 201);
+            this.appointmentTypeComboBox.Location = new System.Drawing.Point(313, 148);
             this.appointmentTypeComboBox.Name = "appointmentTypeComboBox";
             this.appointmentTypeComboBox.Size = new System.Drawing.Size(193, 24);
             this.appointmentTypeComboBox.TabIndex = 51;
@@ -89,7 +87,7 @@
             // dateLabel
             // 
             this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(184, 249);
+            this.dateLabel.Location = new System.Drawing.Point(184, 196);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(36, 16);
             this.dateLabel.TabIndex = 50;
@@ -98,31 +96,23 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(219, 249);
+            this.label2.Location = new System.Drawing.Point(219, 196);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 16);
             this.label2.TabIndex = 49;
             // 
-            // comboBox2
+            // customerComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(313, 155);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(193, 24);
-            this.comboBox2.TabIndex = 48;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(313, 104);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(193, 24);
-            this.comboBox1.TabIndex = 47;
+            this.customerComboBox.FormattingEnabled = true;
+            this.customerComboBox.Location = new System.Drawing.Point(313, 104);
+            this.customerComboBox.Name = "customerComboBox";
+            this.customerComboBox.Size = new System.Drawing.Size(193, 24);
+            this.customerComboBox.TabIndex = 47;
             // 
             // startTimeLabel
             // 
             this.startTimeLabel.AutoSize = true;
-            this.startTimeLabel.Location = new System.Drawing.Point(184, 288);
+            this.startTimeLabel.Location = new System.Drawing.Point(184, 235);
             this.startTimeLabel.Name = "startTimeLabel";
             this.startTimeLabel.Size = new System.Drawing.Size(68, 16);
             this.startTimeLabel.TabIndex = 46;
@@ -131,7 +121,7 @@
             // appointmentTypeLabel
             // 
             this.appointmentTypeLabel.AutoSize = true;
-            this.appointmentTypeLabel.Location = new System.Drawing.Point(184, 206);
+            this.appointmentTypeLabel.Location = new System.Drawing.Point(184, 153);
             this.appointmentTypeLabel.Name = "appointmentTypeLabel";
             this.appointmentTypeLabel.Size = new System.Drawing.Size(73, 16);
             this.appointmentTypeLabel.TabIndex = 45;
@@ -158,7 +148,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(217, 209);
+            this.label4.Location = new System.Drawing.Point(217, 156);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 16);
             this.label4.TabIndex = 44;
@@ -166,20 +156,11 @@
             // endTimeLabel
             // 
             this.endTimeLabel.AutoSize = true;
-            this.endTimeLabel.Location = new System.Drawing.Point(184, 334);
+            this.endTimeLabel.Location = new System.Drawing.Point(184, 281);
             this.endTimeLabel.Name = "endTimeLabel";
             this.endTimeLabel.Size = new System.Drawing.Size(65, 16);
             this.endTimeLabel.TabIndex = 43;
             this.endTimeLabel.Text = "End Time";
-            // 
-            // userIdLabel
-            // 
-            this.userIdLabel.AutoSize = true;
-            this.userIdLabel.Location = new System.Drawing.Point(184, 158);
-            this.userIdLabel.Name = "userIdLabel";
-            this.userIdLabel.Size = new System.Drawing.Size(52, 16);
-            this.userIdLabel.TabIndex = 40;
-            this.userIdLabel.Text = "User ID";
             // 
             // customerLabel
             // 
@@ -201,15 +182,13 @@
             this.Controls.Add(this.appointmentTypeComboBox);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.customerComboBox);
             this.Controls.Add(this.startTimeLabel);
             this.Controls.Add(this.appointmentTypeLabel);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.endTimeLabel);
-            this.Controls.Add(this.userIdLabel);
             this.Controls.Add(this.customerLabel);
             this.Controls.Add(this.editAppointmentHeader);
             this.Name = "EditAppointmentForm";
@@ -227,15 +206,13 @@
         private System.Windows.Forms.ComboBox appointmentTypeComboBox;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox customerComboBox;
         private System.Windows.Forms.Label startTimeLabel;
         private System.Windows.Forms.Label appointmentTypeLabel;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label endTimeLabel;
-        private System.Windows.Forms.Label userIdLabel;
         private System.Windows.Forms.Label customerLabel;
     }
 }

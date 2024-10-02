@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using C969.Appointments;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,10 @@ namespace C969
         {
             InitializeComponent();
             appointmentsDGV.AllowUserToAddRows = false;
+            appointmentsDGV.ReadOnly = true;
+            appointmentsDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            appointmentsDGV.MultiSelect = false;
+
             LoadAppointments();
         }
 
@@ -34,6 +39,80 @@ namespace C969
                 dataAdapter.Fill(dataTable);
 
                 appointmentsDGV.DataSource = dataTable;
+            }
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            OpenAddAppointmentForm();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            EditAppointmentForm editAppointmentForm = new EditAppointmentForm();
+            editAppointmentForm.ShowDialog();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (appointmentsDGV.SelectedRows.Count > 0)
+            {
+                // Get the selected appointmentId from the DataGridView (adjust depending on column names)
+                int appointmentId = Convert.ToInt32(appointmentsDGV.SelectedRows[0].Cells["appointmentId"].Value);
+
+                // Confirm the deletion
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this appointment?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    DeleteAppointment(appointmentId); // Call the delete method
+                    LoadAppointments(); // Refresh the DataGridView after deletion
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void DeleteAppointment(int appointmentId)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
+                string query = "DELETE FROM appointment WHERE appointmentId = @appointmentId";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@appointmentId", appointmentId);
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Appointment deleted successfully.");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Error deleting appointment: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void OpenAddAppointmentForm()
+        {
+            AddAppointmentForm addAppointmentForm = new AddAppointmentForm();
+
+            if (addAppointmentForm.ShowDialog() == DialogResult.OK)
+            {
+                // Refresh the DataGridViewd
+                LoadAppointments();
             }
         }
     }
