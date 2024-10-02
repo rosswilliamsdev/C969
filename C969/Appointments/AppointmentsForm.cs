@@ -60,12 +60,11 @@ namespace C969
                 // Get the selected appointmentId from the DataGridView (adjust depending on column names)
                 int appointmentId = Convert.ToInt32(appointmentsDGV.SelectedRows[0].Cells["appointmentId"].Value);
 
-                // Confirm the deletion
                 DialogResult result = MessageBox.Show("Are you sure you want to delete this appointment?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Yes)
                 {
-                    DeleteAppointment(appointmentId); // Call the delete method
+                    DeleteAppointment(appointmentId);
                     LoadAppointments(); // Refresh the DataGridView after deletion
                 }
             }
