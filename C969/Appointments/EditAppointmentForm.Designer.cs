@@ -35,7 +35,6 @@
             this.appointmentTypeComboBox = new System.Windows.Forms.ComboBox();
             this.dateLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.customerComboBox = new System.Windows.Forms.ComboBox();
             this.startTimeLabel = new System.Windows.Forms.Label();
             this.appointmentTypeLabel = new System.Windows.Forms.Label();
             this.resetButton = new System.Windows.Forms.Button();
@@ -43,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.endTimeLabel = new System.Windows.Forms.Label();
             this.customerLabel = new System.Windows.Forms.Label();
+            this.customerNameTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // editAppointmentHeader
@@ -100,14 +100,6 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 16);
             this.label2.TabIndex = 49;
-            // 
-            // customerComboBox
-            // 
-            this.customerComboBox.FormattingEnabled = true;
-            this.customerComboBox.Location = new System.Drawing.Point(313, 104);
-            this.customerComboBox.Name = "customerComboBox";
-            this.customerComboBox.Size = new System.Drawing.Size(193, 24);
-            this.customerComboBox.TabIndex = 47;
             // 
             // startTimeLabel
             // 
@@ -167,22 +159,29 @@
             this.customerLabel.AutoSize = true;
             this.customerLabel.Location = new System.Drawing.Point(184, 107);
             this.customerLabel.Name = "customerLabel";
-            this.customerLabel.Size = new System.Drawing.Size(80, 16);
+            this.customerLabel.Size = new System.Drawing.Size(104, 16);
             this.customerLabel.TabIndex = 39;
-            this.customerLabel.Text = "Customer ID";
+            this.customerLabel.Text = "Customer Name";
+            // 
+            // customerNameTextBox
+            // 
+            this.customerNameTextBox.Location = new System.Drawing.Point(315, 101);
+            this.customerNameTextBox.Name = "customerNameTextBox";
+            this.customerNameTextBox.Size = new System.Drawing.Size(193, 22);
+            this.customerNameTextBox.TabIndex = 55;
             // 
             // EditAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.customerNameTextBox);
             this.Controls.Add(this.endTimeDTP);
             this.Controls.Add(this.startTimeDTP);
             this.Controls.Add(this.dateDTP);
             this.Controls.Add(this.appointmentTypeComboBox);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.customerComboBox);
             this.Controls.Add(this.startTimeLabel);
             this.Controls.Add(this.appointmentTypeLabel);
             this.Controls.Add(this.resetButton);
@@ -206,7 +205,6 @@
         private System.Windows.Forms.ComboBox appointmentTypeComboBox;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox customerComboBox;
         private System.Windows.Forms.Label startTimeLabel;
         private System.Windows.Forms.Label appointmentTypeLabel;
         private System.Windows.Forms.Button resetButton;
@@ -214,5 +212,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label endTimeLabel;
         private System.Windows.Forms.Label customerLabel;
+        private System.Windows.Forms.TextBox customerNameTextBox;
     }
 }

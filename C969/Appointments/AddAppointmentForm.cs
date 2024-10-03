@@ -18,13 +18,19 @@ namespace C969.Appointments
         {
             InitializeComponent();
             LoadCustomerDropdown();
-            appointmentTypeComboBox.Items.AddRange(appointmentTypes.ToArray());
+            LoadAppointmentTypes();
+            
             dateDTP.Format = DateTimePickerFormat.Short;
             dateDTP.Value = DateTime.Now;
             startTimeDTP.Format = DateTimePickerFormat.Time;
             startTimeDTP.ShowUpDown = true;
             endTimeDTP.Format = DateTimePickerFormat.Time;
             endTimeDTP.ShowUpDown = true;
+        }
+
+        private void LoadAppointmentTypes()
+        {
+            appointmentTypeComboBox.DataSource = AppointmentType.GetAppointmentTypes();
         }
 
         private void LoadCustomerDropdown()
@@ -162,8 +168,6 @@ namespace C969.Appointments
             AddAppointment(customerId, appointmentType, startTimeDTP.Value, endTimeDTP.Value, userId);
         }
 
-
-        public List<string> appointmentTypes = new List<string> {"Consultation", "Meeting", "Personal", "Other" };
 
     }
 }

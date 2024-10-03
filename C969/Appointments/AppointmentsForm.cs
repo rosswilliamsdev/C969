@@ -49,8 +49,20 @@ namespace C969
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            EditAppointmentForm editAppointmentForm = new EditAppointmentForm();
-            editAppointmentForm.ShowDialog();
+            if (appointmentsDGV.SelectedRows.Count > 0)
+            {
+                int selectedCustomerId = Convert.ToInt32(appointmentsDGV.SelectedRows[0].Cells["customerId"].Value);
+                string selectedType = appointmentsDGV.SelectedRows[0].Cells["type"].Value.ToString();
+                DateTime selectedStartTime = Convert.ToDateTime(appointmentsDGV.SelectedRows[0].Cells["start"].Value);
+                DateTime selectedEndTime = Convert.ToDateTime(appointmentsDGV.SelectedRows[0].Cells["end"].Value);
+
+                EditAppointmentForm editAppointmentForm = new EditAppointmentForm(selectedCustomerId, selectedType, selectedStartTime, selectedEndTime);
+                editAppointmentForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select an appointment to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -110,7 +122,7 @@ namespace C969
 
             if (addAppointmentForm.ShowDialog() == DialogResult.OK)
             {
-                // Refresh the DataGridViewd
+                // Refresh the DataGridView
                 LoadAppointments();
             }
         }

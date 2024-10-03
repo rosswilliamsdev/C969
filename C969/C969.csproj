@@ -110,7 +110,8 @@
     <Compile Include="Appointments\EditAppointmentForm.Designer.cs">
       <DependentUpon>EditAppointmentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComboBoxItem.cs" />
+    <Compile Include="Utilities\AppointmentType.cs" />
+    <Compile Include="Utilities\ComboBoxItem.cs" />
     <Compile Include="CustomerRecords\AddCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
