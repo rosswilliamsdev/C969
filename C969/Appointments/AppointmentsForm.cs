@@ -1,4 +1,5 @@
 ﻿using C969.Appointments;
+using C969.Utilities;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -26,20 +27,10 @@ namespace C969
             LoadAppointments();
         }
 
-        private void LoadAppointments()
+        public void LoadAppointments()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
-            string query = "SELECT * FROM appointment";
-            DataTable dataTable = new DataTable();
-
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                conn.Open();
-                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, conn);
-                dataAdapter.Fill(dataTable);
-
-                appointmentsDGV.DataSource = dataTable;
-            }
+            DataTable appointments = AppointmentHelper.GetAppointments();
+            appointmentsDGV.DataSource = appointments;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -51,12 +42,14 @@ namespace C969
         {
             if (appointmentsDGV.SelectedRows.Count > 0)
             {
+                int selectedAppointmentId = Convert.ToInt32(appointmentsDGV.SelectedRows[0].Cells["appointmentId"].Value);
                 int selectedCustomerId = Convert.ToInt32(appointmentsDGV.SelectedRows[0].Cells["customerId"].Value);
                 string selectedType = appointmentsDGV.SelectedRows[0].Cells["type"].Value.ToString();
                 DateTime selectedStartTime = Convert.ToDateTime(appointmentsDGV.SelectedRows[0].Cells["start"].Value);
                 DateTime selectedEndTime = Convert.ToDateTime(appointmentsDGV.SelectedRows[0].Cells["end"].Value);
 
-                EditAppointmentForm editAppointmentForm = new EditAppointmentForm(selectedCustomerId, selectedType, selectedStartTime, selectedEndTime);
+                EditAppointmentForm editAppointmentForm = new EditAppointmentForm(selectedAppointmentId, selectedCustomerId, selectedType, selectedStartTime, selectedEndTime);
+                editAppointmentForm.Owner = this; //so the DGV refreshes with updated data after editing appointments
                 editAppointmentForm.ShowDialog();
             }
             else

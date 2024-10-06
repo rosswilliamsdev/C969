@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using C969.Utilities;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +31,7 @@ namespace C969.Appointments
 
         private void LoadAppointmentTypes()
         {
-            appointmentTypeComboBox.DataSource = AppointmentType.GetAppointmentTypes();
+            appointmentTypeComboBox.DataSource = AppointmentHelper.GetAppointmentTypes();
         }
 
         private void LoadCustomerDropdown()
@@ -86,6 +87,7 @@ namespace C969.Appointments
                 }
                 MessageBox.Show("Appointment added successfully.");
                 this.DialogResult = DialogResult.OK;
+                
                 this.Close();
             }
             catch (MySqlException ex)
@@ -98,42 +100,6 @@ namespace C969.Appointments
             }
         }
 
-
-
-        private bool IsWithinBusinessHours(DateTime start, DateTime end)
-        {
-            //Business hours in EST
-            DateTime startBusinessHours = DateTime.Today.AddHours(9); //9am
-            DateTime endBusinessHours = DateTime.Today.AddHours(17); //5pm
-
-            bool withinHours = start.TimeOfDay >= startBusinessHours.TimeOfDay && end.TimeOfDay <= endBusinessHours.TimeOfDay;
-
-            bool isWeekday = start.DayOfWeek >= DayOfWeek.Monday && start.DayOfWeek <= DayOfWeek.Friday;
-
-            return withinHours && isWeekday;
-        }
-
-        private bool IsOverlappingAppointment(int customerId, DateTime start, DateTime end)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
-            string query = "SELECT COUNT(*) FROM appointment WHERE customerId = @customerId AND ((@start BETWEEN start AND end) OR (@end BETWEEN start AND end))";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@customerId", customerId);
-                    command.Parameters.AddWithValue("@start", start);
-                    command.Parameters.AddWithValue("@end", end);
-                    int count = Convert.ToInt32(command.ExecuteScalar());
-                    return count > 0; //if a time is already used, return false
-
-                }
-            }
-        }
-
-
         private void saveButton_Click(object sender, EventArgs e)
         {
             ComboBoxItem selectedCustomer = (ComboBoxItem)customerComboBox.SelectedItem;
@@ -144,13 +110,17 @@ namespace C969.Appointments
             }
             int customerId = selectedCustomer.CustomerId;
 
-            if (!IsWithinBusinessHours(startTimeDTP.Value, endTimeDTP.Value))
+            // combines the selected date with start and end times
+            DateTime startDateTime = dateDTP.Value.Date + startTimeDTP.Value.TimeOfDay;
+            DateTime endDateTime = dateDTP.Value.Date + endTimeDTP.Value.TimeOfDay;
+
+            if (!AppointmentHelper.IsWithinBusinessHours(startDateTime, endDateTime))
             {
                 MessageBox.Show("Appointments must be scheduled between 9:00 AM and 5:00 PM, Monday-Friday.", "Invalid Time", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (IsOverlappingAppointment(customerId, startTimeDTP.Value, endTimeDTP.Value))
+            if (AppointmentHelper.IsOverlappingAppointment(customerId, startDateTime, endDateTime))
             {
                 MessageBox.Show("This appointment overlaps with another appointment.", "Overlapping Appointment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
