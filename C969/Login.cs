@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,7 +64,7 @@ namespace C969
 
             if (userId > 0)
             {
-
+                RecordLogin(username);
                 var culture = CultureInfo.CurrentCulture;
 
                 Home homePage = new Home(userId);
@@ -108,6 +109,21 @@ namespace C969
                 MessageBox.Show($"Error connecting to the database: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return -1; // Invalid login
+        }
+
+        private void RecordLogin(string username)
+        {
+            string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Login_History.txt");
+            string logEntry = $"User: {username}, Login Time: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}{Environment.NewLine}";
+
+            try
+            {
+                File.AppendAllText(filepath, logEntry);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error writing to log file: {ex.Message}", "Log Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }
