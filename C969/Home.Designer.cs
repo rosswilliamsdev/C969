@@ -33,6 +33,9 @@
             this.appointmentsMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.customerRecordsMenuButton = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsMenuButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.apptTypesByMonthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.apptByUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.apptPerCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.navBar.SuspendLayout();
             this.SuspendLayout();
@@ -71,9 +74,32 @@
             // 
             // reportsMenuButton
             // 
+            this.reportsMenuButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.apptTypesByMonthToolStripMenuItem,
+            this.apptByUserToolStripMenuItem,
+            this.apptPerCustomerToolStripMenuItem});
             this.reportsMenuButton.Name = "reportsMenuButton";
             this.reportsMenuButton.Size = new System.Drawing.Size(74, 24);
             this.reportsMenuButton.Text = "Reports";
+            this.reportsMenuButton.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.reportsMenuItem_DropDownItemClicked);
+            // 
+            // apptTypesByMonthToolStripMenuItem
+            // 
+            this.apptTypesByMonthToolStripMenuItem.Name = "apptTypesByMonthToolStripMenuItem";
+            this.apptTypesByMonthToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
+            this.apptTypesByMonthToolStripMenuItem.Text = "Appt. Types By Month";
+            // 
+            // apptByUserToolStripMenuItem
+            // 
+            this.apptByUserToolStripMenuItem.Name = "apptByUserToolStripMenuItem";
+            this.apptByUserToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
+            this.apptByUserToolStripMenuItem.Text = "Appt. By User";
+            // 
+            // apptPerCustomerToolStripMenuItem
+            // 
+            this.apptPerCustomerToolStripMenuItem.Name = "apptPerCustomerToolStripMenuItem";
+            this.apptPerCustomerToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
+            this.apptPerCustomerToolStripMenuItem.Text = "Appt. Per Customer";
             // 
             // mainPanel
             // 
@@ -108,5 +134,8 @@
         private System.Windows.Forms.ToolStripMenuItem customerRecordsMenuButton;
         private System.Windows.Forms.ToolStripMenuItem reportsMenuButton;
         private System.Windows.Forms.Panel mainPanel;
+        private System.Windows.Forms.ToolStripMenuItem apptTypesByMonthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem apptByUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem apptPerCustomerToolStripMenuItem;
     }
 }

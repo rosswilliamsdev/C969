@@ -1,6 +1,9 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Bcpg;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -56,12 +59,14 @@ namespace C969
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Text;
 
-            if (IsValidLogin(username, password))
+            int userId = AuthenticateUser(username, password);
+
+            if (userId > 0)
             {
 
                 var culture = CultureInfo.CurrentCulture;
 
-                Home homePage = new Home();
+                Home homePage = new Home(userId);
                 homePage.Show();
                 this.Hide();
             }
@@ -74,10 +79,35 @@ namespace C969
             }
         }
 
-        private bool IsValidLogin(string username, string password)
+        private int AuthenticateUser(string username, string password)
         {
-            //change this eventually to actual users!
-            return username == "test" && password == "test";
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
+                string query = "SELECT userId FROM user WHERE userName = @username AND password = @password AND active = 1";
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@username", username);
+                        command.Parameters.AddWithValue("@password", password);
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            return Convert.ToInt32(result);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Error connecting to the database: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return -1; // Invalid login
         }
 
     }

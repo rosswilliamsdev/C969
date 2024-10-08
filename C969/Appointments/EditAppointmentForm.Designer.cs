@@ -37,7 +37,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.startTimeLabel = new System.Windows.Forms.Label();
             this.appointmentTypeLabel = new System.Windows.Forms.Label();
-            this.resetButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.endTimeLabel = new System.Windows.Forms.Label();
@@ -119,20 +118,11 @@
             this.appointmentTypeLabel.TabIndex = 45;
             this.appointmentTypeLabel.Text = "Appt. Type";
             // 
-            // resetButton
-            // 
-            this.resetButton.Location = new System.Drawing.Point(433, 385);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(75, 23);
-            this.resetButton.TabIndex = 41;
-            this.resetButton.Text = "Reset";
-            this.resetButton.UseVisualStyleBackColor = true;
-            // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(315, 385);
+            this.saveButton.Location = new System.Drawing.Point(355, 367);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.Size = new System.Drawing.Size(103, 30);
             this.saveButton.TabIndex = 42;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -185,7 +175,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.startTimeLabel);
             this.Controls.Add(this.appointmentTypeLabel);
-            this.Controls.Add(this.resetButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.endTimeLabel);
@@ -208,7 +197,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label startTimeLabel;
         private System.Windows.Forms.Label appointmentTypeLabel;
-        private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label endTimeLabel;

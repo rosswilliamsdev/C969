@@ -117,9 +117,14 @@ namespace C969.Appointments
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
+            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
+
             // Combine date and time for start and end
             DateTime startDateTime = dateDTP.Value.Date + startTimeDTP.Value.TimeOfDay;
             DateTime endDateTime = dateDTP.Value.Date + endTimeDTP.Value.TimeOfDay;
+
+            DateTime utcStartDateTime = TimeZoneInfo.ConvertTimeToUtc(startDateTime, localTimeZone);
+            DateTime utcEndDateTime = TimeZoneInfo.ConvertTimeToUtc(endDateTime, localTimeZone);
 
             if (!AppointmentHelper.IsWithinBusinessHours(startDateTime, endDateTime))
             {
@@ -142,7 +147,7 @@ namespace C969.Appointments
             string appointmentType = appointmentTypeComboBox.SelectedItem.ToString();
             int userId = 1; // default userId value;
 
-            EditAppointment(appointmentId, customerId, appointmentType, startDateTime, endDateTime, userId);
+            EditAppointment(appointmentId, customerId, appointmentType, utcStartDateTime, utcEndDateTime, userId);
             ((AppointmentsForm)this.Owner).LoadAppointments();
         }
 
