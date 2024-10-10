@@ -80,7 +80,7 @@ namespace C969
         {
             try
             {
-                // Perform the operation to add a customer
+                
                 int countryId = GetCountryId(countryName);
                 if (countryId == -1)
                 {
@@ -96,7 +96,7 @@ namespace C969
                 int addressId = InsertAddress(address, cityId, phoneNumber);
                 if (addressId > 0)
                 {
-                    InsertCustomerIntoDatabase(customerName, addressId, phoneNumber);
+                    InsertCustomerIntoDatabase(customerName, addressId);
                 }
             }
             catch (MySqlException ex)
@@ -121,8 +121,8 @@ namespace C969
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@countryName", countryName);
-                    command.ExecuteScalar();
-                    return (int)command.LastInsertedId;
+                    object result = command.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : -1;
                 }
             }
         }
@@ -180,7 +180,7 @@ namespace C969
             }
         }
 
-        private int InsertAddress(string address, int cityId, string phone)
+        private int InsertAddress(string address, int cityId, string phoneNumber)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
             string query = "INSERT INTO address (address, cityId, postalCode, phone, createDate, createdBy, lastUpdateBy) " +
@@ -193,18 +193,18 @@ namespace C969
                 {
                     command.Parameters.AddWithValue("@address", address);
                     command.Parameters.AddWithValue("@cityId", cityId);
-                    command.Parameters.AddWithValue("@phone", phone);
+                    command.Parameters.AddWithValue("@phone", phoneNumber);
                     command.ExecuteNonQuery();
                     return (int)command.LastInsertedId;
                 }
             }
         }
 
-        private void InsertCustomerIntoDatabase(string customerName, int addressId, string phoneNumber)
+        private void InsertCustomerIntoDatabase(string customerName, int addressId)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
-            string query = "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdateBy, phoneNumber) " +
-                           "VALUES (@customerName, @addressId, 1, NOW(), 'system', 'system', @phoneNumber)";
+            string query = "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdateBy) " +
+                           "VALUES (@customerName, @addressId, 1, NOW(), 'system', 'system')";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -213,16 +213,10 @@ namespace C969
                 {
                     command.Parameters.AddWithValue("@customerName", customerName);
                     command.Parameters.AddWithValue("@addressId", addressId);
-                    command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
                     command.ExecuteNonQuery();
                     MessageBox.Show("Customer added successfully!");
                 }
             }
-        }
-
-        private void nameLabel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

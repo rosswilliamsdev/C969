@@ -1,1 +1,2 @@
-ALTER TABLE address MODIFY address2 VARCHAR(50) NULL;
+ALTER TABLE customer
+DROP COLUMN phoneNumber;

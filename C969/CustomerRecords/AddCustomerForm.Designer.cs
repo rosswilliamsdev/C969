@@ -84,7 +84,6 @@
             this.nameLabel.Size = new System.Drawing.Size(49, 16);
             this.nameLabel.TabIndex = 5;
             this.nameLabel.Text = "Name*";
-            this.nameLabel.Click += new System.EventHandler(this.nameLabel_Click);
             // 
             // addressLabel
             // 

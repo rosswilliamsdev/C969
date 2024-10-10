@@ -67,7 +67,7 @@ namespace C969.CustomerRecords
             }
 
             //update customer record
-            UpdateCustomer(customerId, updatedName, updatedAddress, updatedCity, updatedCountry, updatedPhoneNumber);
+            UpdateCustomerAndAddress(customerId, updatedName, updatedAddress, updatedCity, updatedCountry, updatedPhoneNumber);
 
             //close after save
             this.Close();
@@ -79,7 +79,7 @@ namespace C969.CustomerRecords
             return Regex.IsMatch(phoneNumber, pattern);
         }
 
-        private void UpdateCustomer(int customerId, string name, string address, string city, string country, string phoneNumber)
+        private void UpdateCustomerAndAddress(int customerId, string name, string address, string city, string country, string phoneNumber)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace C969.CustomerRecords
                 int addressId = GetCustomerAddressId(customerId);
                 int cityId = GetCityId(city, country);
 
-                string updateAddressQuery = "UPDATE address SET address = @address, cityId = @cityId WHERE addressId = @addressId";
+                string updateAddressQuery = "UPDATE address SET address = @address, cityId = @cityId, phone = @phone WHERE addressId = @addressId";
 
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
@@ -97,16 +97,16 @@ namespace C969.CustomerRecords
                     {
                         command.Parameters.AddWithValue("@address", address);
                         command.Parameters.AddWithValue("@cityId", cityId);
+                        command.Parameters.AddWithValue("@phone", phoneNumber);
                         command.Parameters.AddWithValue("@addressId", addressId);
                         command.ExecuteNonQuery();
                     }
 
-                    string updateCustomerQuery = "UPDATE customer SET customerName = @name, phoneNumber = @phoneNumber WHERE customerId = @customerId";
+                    string updateCustomerQuery = "UPDATE customer SET customerName = @name WHERE customerId = @customerId";
 
                     using (MySqlCommand command = new MySqlCommand(updateCustomerQuery, connection))
                     {
                         command.Parameters.AddWithValue("@name", name);
-                        command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
                         command.Parameters.AddWithValue("@customerId", customerId);
                         command.ExecuteNonQuery();
                     }

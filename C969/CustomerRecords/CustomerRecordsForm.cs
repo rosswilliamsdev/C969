@@ -30,12 +30,13 @@ namespace C969
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
             string query = @"
-        SELECT customer.customerId, customer.customerName, address.address, customer.phoneNumber, 
-               city.city, country.country 
-        FROM customer
-        JOIN address ON customer.addressId = address.addressId
-        JOIN city ON address.cityId = city.cityId
-        JOIN country ON city.countryId = country.countryId";
+        SELECT customer.customerId, customer.customerName, address.address, address.phone AS phoneNumber, 
+       city.city, country.country
+FROM customer
+JOIN address ON customer.addressId = address.addressId
+JOIN city ON address.cityId = city.cityId
+JOIN country ON city.countryId = country.countryId
+";
 
             DataTable dataTable = new DataTable();
 
