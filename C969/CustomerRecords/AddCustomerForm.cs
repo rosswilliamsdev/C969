@@ -80,6 +80,14 @@ namespace C969
         {
             try
             {
+                // Insert country code here
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Error inserting country: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
                 
                 int countryId = GetCountryId(countryName);
                 if (countryId == -1)
@@ -183,22 +191,31 @@ namespace C969
         private int InsertAddress(string address, int cityId, string phoneNumber)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ClientScheduleDB"].ConnectionString;
-            string query = "INSERT INTO address (address, cityId, postalCode, phone, createDate, createdBy, lastUpdateBy) " +
-                           "VALUES (@address, @cityId, '00000', @phone, NOW(), 'system', 'system')";
+            string query = "INSERT INTO address (address, address2, cityId, postalCode, phone, createDate, createdBy, lastUpdateBy) " +
+                           "VALUES (@address, @address2, @cityId, @postalCode, @phone, NOW(), 'system', 'system')";
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
+                    // User-provided fields
                     command.Parameters.AddWithValue("@address", address);
                     command.Parameters.AddWithValue("@cityId", cityId);
                     command.Parameters.AddWithValue("@phone", phoneNumber);
+
+                    // Placeholder values for fields not provided by the user
+                    command.Parameters.AddWithValue("@address2", "");  
+                    command.Parameters.AddWithValue("@postalCode", "00000"); 
+
+                    //The remaining fields should either be auto-increment, set to system, or NOW()
+                    
                     command.ExecuteNonQuery();
                     return (int)command.LastInsertedId;
                 }
             }
         }
+
 
         private void InsertCustomerIntoDatabase(string customerName, int addressId)
         {
